@@ -1,0 +1,72 @@
+
+.box-main {
+  max-width: fit-content;
+  margin: 10 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.school-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 30px auto;
+  margin-top: 55px;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+  background-color: #f9f9f9;
+  border-bottom: 3.5px solid yellow;
+  transition: background-color 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  padding: 40px;
+}
+
+.section:hover {
+  background-color: #fffde7; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-bottom-color: green;
+}
+
+.firstHalf,
+.secondHalf {
+  width: 100%;
+}
+
+.text-big {
+  margin-top: 22px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: green;
+  margin-bottom: 20px;
+  }
+
+.text-small {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 130px;
+}
+
+.recentimg{
+  overflow: visible;
+  position: relative;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 10px;
+  height: auto;
+  text-align: center;
+  color: green;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .text-big {
+    font-size: 1.5rem;
+}
+}

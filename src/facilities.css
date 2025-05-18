@@ -1,0 +1,30 @@
+/* Container styling */
+.facilities-container {
+  padding: 90px;
+  background-color: #f4f8fb;
+  border-radius: 8px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: whitesmoke;
+}
+
+/* Heading */
+.facilities-container h2 {
+  text-align: center;
+  color: #2e8b57;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* List */
+.facilities-container ul {
+  list-style-type: square;
+  padding-left: 50px;
+  font-size: 18px;
+  color: #34495e;
+  line-height: 1.8;
+}
+
+.facilities-container li {
+  margin-bottom: 10px;
+}
