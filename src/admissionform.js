@@ -10,7 +10,6 @@ function AdmissionForm() {
     gender: "",
     dob: "",
     address: "",
-    course: "",
     qualification: "",
     message: ""
   });
@@ -19,23 +18,62 @@ function AdmissionForm() {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Form submitted successfully!");
-    // Reset the form
-    setFormData({
-      fullName: "",
-      email: "",
-      contact: "",
-      gender: "",
-      dob: "",
-      address: "",
-      course: "",
-      qualification: "",
-      message: ""
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Form submitted:", formData);
+  //   alert("Form submitted successfully!");
+  //   // Reset the form
+  //   setFormData({
+  //     fullName: "",
+  //     email: "",
+  //     contact: "",
+  //     gender: "",
+  //     dob: "",
+  //     address: "",
+  //     course: "",
+  //     qualification: "",
+  //     message: ""
+  //   });
+  // };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:3001/api/admissionDB', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
     });
-  };
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(`Form submitted successfully! Admission ID: ${data.id}`);
+      console.log("Admission submitted:", data);
+      // Reset the form
+      setFormData({
+        fullName: "",
+        email: "",
+        contact: "",
+        dob: "",
+        gender: "",
+        address: "",
+        qualification: "",
+        message: ""
+      });
+    } else {
+      alert("Submission failed. Try again.");
+      console.error("Error:", data);
+    }
+  } catch (error) {
+    console.error("Network error:", error);
+    alert("An error occurred. Please try again later.");
+  }
+};
+
 
   return (
     <div className='adform'>
@@ -70,6 +108,8 @@ function AdmissionForm() {
           placeholder="Contact Number"
           value={formData.contact}
           onChange={handleChange}
+          pattern="[0-9]{10}"
+          title="Please enter a 10-digit number"
           required
         />
 <br>

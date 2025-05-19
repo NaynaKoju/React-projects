@@ -28,7 +28,7 @@ function SearchComponent() {
         sectionById.style.backgroundColor = "";}, 2000);
       }
 
-        const allSections = document.querySelectorAll("section, div, h1, p");
+        const allSections = document.querySelectorAll("section");
         if (allSections) {
         allSections.forEach((section, div, h1, p) => {
           const textContent = section.textContent.toLowerCase();
