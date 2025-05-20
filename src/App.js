@@ -15,6 +15,9 @@ import AdmissionCriteria from "./admissioncriteria";
 import AdmissionFAQ from "./faq";
 import DropDown from "./dropdown"
 import StudentForm from "./studentprofile";
+import AdminLogin from "./adminlogin";
+import AdminDashboard from "./admindashboard";
+
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
 
@@ -33,14 +36,31 @@ function App() {
                        <Link to="/socials">Socials</Link>
                        <Link to="/students">Students</Link>
                        <Link to="/fees">Fee Structure</Link>
-                       
+
                         <DropDown/>
 
                          <div className="rightNav">
                      <SearchComponent />
                 </div>
+
+
+
+                {/* Admin Icon Link */}
+    <Link to="/adminlogin" title="Admin Login" style={{ marginLeft: "20px", display: "flex", alignItems: "center", color: "white", textDecoration: "none" }}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        width="24"
+        height="24"
+        fill="black"
+        style={{ marginRight: "6px" }}
+      >
+        <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
+      Admin
+    </Link>
+                 
                   </nav>
-                  <Routes> {/* Wrap the routes inside Routes */}
+                  <Routes> {/* Wrap the route inside Routes */}
           <Route path="/home" element={<Home />} />
           <Route path="/aboutus" element={<AboutUs />} /> 
           <Route path="/facilities" element={<Facilities />} />
@@ -51,6 +71,8 @@ function App() {
           <Route path="/admissioncriteria" element={<AdmissionCriteria />} />
           <Route path="/faq" element={<AdmissionFAQ />} />
           <Route path= "/studentprofile" element={<StudentForm />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
+          <Route path="/admindashboard" element={<AdminDashboard />} />
           
         </Routes>
             

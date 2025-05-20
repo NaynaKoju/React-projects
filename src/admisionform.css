@@ -1,18 +1,27 @@
 .adform {
   max-width: fit-content;
-  margin: 20px auto;
-  padding: 100px;
+  margin: 15px auto;
+  padding: 80px;
   background-color: ghostwhite;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
+.adform div{
+  max-width: 400px;
+  margin: 4px auto;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
 .adform h1 {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 1.5px;
   color: #333;
-  padding: 10px;
-  color: slategrey; 
+  padding: 10px; 
 }
 
 .inputfields {
@@ -23,14 +32,14 @@
 .contents {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  
   width: 400px;
 }
 
 input,
 select,
 textarea {
-  padding: 10px;
+  padding: 6px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -50,7 +59,7 @@ button[type="submit"] {
   width: 360px;
   background-color: skyblue;
   color: white;
-  padding: 12px;
+  padding: 10px;
   border: none;
   font-size: 16px;
   border-radius: 6px;

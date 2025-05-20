@@ -153,11 +153,12 @@ function StudentForm() {
             onChange={handleChange}
             required
           />
-        </div>
 
-        <button type="submit" className="submit-btn">
+          <button type="submit" className="submit-btn">
           Save Profile
         </button>
+        </div>
+
       </form>
     </div>
   );

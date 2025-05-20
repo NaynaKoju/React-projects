@@ -99,6 +99,43 @@ app.post('/api/studentDB', (req,res) => {
     });
 });
 
+// GET route to fetch all student profiles
+// app.get('/api/studentDB', (req, res) => {
+//   const sql = `SELECT * FROM students`;
+
+//   db.query(sql, (err, results) => {
+//     if (err) {
+//       console.error('Error fetching student data:', err);
+//       res.status(500).send({ message: 'Error fetching student data' });
+//     } else {
+//       res.status(200).json(results);
+//     }
+//   });
+// });
+
+app.get('/api/studentDB', (req, res) => {
+  const { email, password } = req.query;  // or req.body if POST
+
+  const ADMIN_EMAIL = 'admin@lbess.edu.np';
+  const ADMIN_PASSWORD = 'admin123';
+
+
+  if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+    // If correct, send student data
+    const sql = `SELECT * FROM students`;
+    db.query(sql, (err, results) => {
+      if (err) {
+        return res.status(500).send({ message: 'Error fetching data' });
+      }
+      res.json(results);
+    });
+  } else {
+    // If not correct, deny access
+    res.status(401).send({ message: 'Unauthorized' });
+  }
+});
+
+
 // ✅ Start server
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

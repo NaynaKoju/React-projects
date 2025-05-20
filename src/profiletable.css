@@ -1,0 +1,56 @@
+.admin-dashboard {
+  padding: 90px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.title {
+    text-align: left;
+    margin-bottom: 25px;
+    color: #123524;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th,
+.student-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.student-table th {
+  background-color:  #B2CD9C;
+}
+
+/*css for admission form*/
+.admission-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admission-table th,
+.admission-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.admission-table th {
+  background-color:  #B2CD9C;
+}
+
+.tab-buttons button {
+  margin-right: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.active-tab {
+  background-color: rgb(0, 47, 255);
+  color: white;
+}
+

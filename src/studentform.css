@@ -1,47 +1,72 @@
 .form-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 80px;
-  border: 1px solid #ddd;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 40px;
+  margin-top: 120px;
+  border: 1px solid black;
   border-radius: 8px;
   background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  color:green;
+  margin-bottom: 30px;
+  color: green;
 }
 
 .student-form .form-group {
-  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 5px;
+  color: #070F2B;
 }
 
-.student-form label {
+/* Label styles */
+.form-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-.student-form input,
-.student-form textarea {
-  width: 100%;
+/* Input and Textarea */
+.form-group input,
+.form-group textarea {
+  width: 400px;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 7px;
+  margin-left: 80px;
+  box-sizing: border-box;
+  font-size: 14px;
 }
 
+.student-form textarea {
+  resize: vertical;
+  min-height: 80px;
+  margin-right: 90px;
+}
+
+/* Submit Button */
 .submit-btn {
   width: 100%;
-  padding: 10px;
-  background-color: blue;
-  /* color: white; */
+  padding: 12px;
+  background-color: #007bff;
   border: none;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
+  grid-column: 1 / -1;
 }
 
 .submit-btn:hover {
   background-color: green;
+}
+
+/* Responsive: Stack fields on smaller screens */
+@media (max-width: 768px) {
+  .student-form .form-group {
+    grid-template-columns: 1fr;
+  }
 }

@@ -80,7 +80,6 @@ function AdmissionForm() {
       <h1>Admission Form</h1>
       <form onSubmit={handleSubmit} className="inputfields">
         <div className= "contents">
-
         <input
           type="text"
           name="fullName"
@@ -181,9 +180,9 @@ function AdmissionForm() {
 
         <br>
         </br>
+         <button type="submit">Submit</button>
         </div>
 
-        <button type="submit">Submit</button>
       </form>
     </div>
     

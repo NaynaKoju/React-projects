@@ -108,6 +108,32 @@ app.post('/api/admissionDB', (req,res) => {
     });
 });
 
+// GET route to fetch all admission form data with admin verification
+app.get('/api/admissionDB', (req, res) => {
+  const { email, password } = req.query;
+
+  // Hardcoded admin credentials (same as used in login)
+  const adminEmail = 'admin@lbess.edu.np';
+  const adminPassword = 'admin123';
+
+  // Check if the provided email and password match admin credentials
+  if (email !== adminEmail || password !== adminPassword) {
+    return res.status(401).json({ message: 'Unauthorized: Invalid credentials' });
+  }
+
+  // If credentials match, fetch data from the admission table
+  const sql = 'SELECT * FROM admission';
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error fetching admission data:', err);
+      return res.status(500).json({ message: 'Error retrieving data' });
+    }
+
+    res.status(200).json(results); // Send all admission records as JSON
+  });
+});
+
+
 // ✅ Start server
 const PORT = 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
