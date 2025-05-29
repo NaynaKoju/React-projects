@@ -1,25 +1,32 @@
 // src/AboutUs.js
-import React from "react";
 import './aboutus.css';
+import React, { useEffect, useState } from "react";
 
 function AboutUs() {
+  const[sections, setSections] = useState([]);
+   
+  useEffect(() => {
+    fetch (`http://localhost:3004/api/pages/about`)
+    .then(res => res.json())
+    .then(data => setSections(data))
+    .catch(err => console.error("Failed to fetch page", err));
+  }, []);
+
+  if (sections.length===0) return <div>Loading.....</div>
+   
   return (
-    <div className="about-us-container">
-      <h1 className="about-us-heading">About Lord Buddha School</h1>
-      <p className="about-us-paragraph">
-        Lord Buddha English Secondary School (LBESS) is committed to providing a
-        nurturing and enriching academic environment. We value holistic
-        development and promote excellence in education, character, and community
-        involvement.
-      </p>
-      <p className="about-us-paragraph">
-        Our mission is to empower students to reach their full potential through
-        quality teaching, innovation, and values-based learning.
-      </p>
-      <p> </p>
-      {/* Add more content here as needed */}
+
+<div className="about-us-container">
+  {sections.map((section, index) => (
+    <div key={index}>
+      <h1 className="about-us-heading">{section.title}</h1>
+      <div
+        className="about-us-paragraph"
+        dangerouslySetInnerHTML={{ __html: section.content }}
+      />
     </div>
+  ))}
+</div>
   );
 }
-
 export default AboutUs;

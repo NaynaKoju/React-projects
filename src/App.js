@@ -17,6 +17,7 @@ import DropDown from "./dropdown"
 import StudentForm from "./studentprofile";
 import AdminLogin from "./adminlogin";
 import AdminDashboard from "./admindashboard";
+import AdminEditPage from "./admineditpage";
 
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -43,8 +44,6 @@ function App() {
                      <SearchComponent />
                 </div>
 
-
-
                 {/* Admin Icon Link */}
     <Link to="/adminlogin" title="Admin Login" style={{ marginLeft: "20px", display: "flex", alignItems: "center", color: "white", textDecoration: "none" }}>
       <svg
@@ -62,7 +61,6 @@ function App() {
                   </nav>
                   <Routes> {/* Wrap the route inside Routes */}
           <Route path="/home" element={<Home />} />
-          <Route path="/aboutus" element={<AboutUs />} /> 
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/socials" element={<Socials />} />
           <Route path="/students" element={<Students />} /> {/* Student route */}
@@ -73,6 +71,9 @@ function App() {
           <Route path= "/studentprofile" element={<StudentForm />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/admin/edit/:slug" element={<AdminEditPage />} />
+
           
         </Routes>
             

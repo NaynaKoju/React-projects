@@ -54,3 +54,13 @@
   color: white;
 }
 
+/* edit buttons in admin dashboard*/
+.edit-link {
+  display: inline-block;
+  margin: 10px 0;
+  background-color: #1976d2;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}

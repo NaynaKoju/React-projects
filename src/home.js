@@ -1,17 +1,135 @@
-import React from "react";
-import './home.css'; 
-import SearchComponent from './search';
-import schoolimage from './images/schoolimage.jpg';
+import React, { useEffect, useState } from "react";
+import './home.css';
 import RecentImages from "./RecentImages.js";
 
 function Home() {
+  const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3004/api/pages/home`)
+      .then(res => res.json())
+      .then(data => {
+  console.log("Homepage sections", data);
+  const sliderSection = data.find(s => s.title === "Slider Images");
+  console.log("Slider Section:", sliderSection);
+  setSections(data);
+})
+      .catch(err => console.error("Failed to fetch homepage", err));
+  }, []);
+
   return (
     <>
- 
+      {sections.map((section, index) => {
+        // Main Image Section
+        if (section.title === "Main Image URL") {
+          const descSection = sections.find(s => s.title === "Main Image Description");
+
+          // Handles both relative (/uploads/...) and full URL (http://...)
+          const imageUrl = section.content.startsWith("http")
+            ? section.content
+            : `http://localhost:3004${section.content}`;
+
+          console.log("Main Image URL:", imageUrl);
+
+          return (
+            <section className="main-image-banner" key={index}>
+              <img
+                src={imageUrl}
+                alt="Main"
+                className="school-image"
+              />
+              {descSection && (
+                <div className="image-description">
+                  <div dangerouslySetInnerHTML={{ __html: descSection.content }} />
+                </div>
+              )}
+            </section>
+          );
+        }
+
+        // Admission Section
+        if (section.title === "Admission Section") {
+          return (
+            <section className="section" id="admission" key={index}>
+              <div className="box-main">
+                <div className="firstHalf">
+                  <h1 className="text-big">{section.title}</h1>
+                  <div className="text-small" dangerouslySetInnerHTML={{ __html: section.content }} />
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Latest Section
+        if (section.title === "Latest Section") {
+          return (
+            <section className="section" id="latest" key={index}>
+              <div className="box-main">
+                <div className="secondHalf">
+                  <h1 className="text-big">{section.title}</h1>
+                  <div className="text-small" dangerouslySetInnerHTML={{ __html: section.content }} />
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Testimonial Section
+        if (section.title === "Testimonial Section") {
+          return (
+            <section className="section" id="testimonial" key={index}>
+              <div className="secondHalf">
+                <h1 className="text-big">{section.title}</h1>
+                <blockquote className="text-small">"{section.content}"</blockquote>
+              </div>
+            </section>
+          );
+        }
+
+        // Slider Images Section
+       if (section.title === "Slider Images") {
+  let images = [];
+
+  try {
+    images = JSON.parse(section.content);
+    if (!Array.isArray(images)) {
+      throw new Error("Parsed content is not an array");
+    }
+  } catch (err) {
+    console.error("Slider Images not in JSON format or not an array:", err);
+    images = []; // fallback to empty array
+  }
+
+    console.log("Images for RecentImages:", images);
+
+  return (
+    <section key={index}>
+      <RecentImages images={images} />
+    </section>
+  );
+}
+
+
+        // Default for any other section
+        return (
+          <section className="section" key={index}>
+            <h1 className="text-big">{section.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: section.content }} />
+          </section>
+        );
+      })}
+    </>
+  );
+}
+
+export default Home;
+
+
+{/*  hardcoded contents for homepage
 <img src={schoolimage} alt="School" className="school-image" />
  <section className="section" id= "admission">
                 <div className="box-main">
-                
                     <div className="firstHalf">
                         <h1 className="text-big">
                             Do you really wanna get admission in LordBuddha?
@@ -30,6 +148,8 @@ function Home() {
                             community. We encourage all prospective families to visit the school, 
                             meet with our staff, and experience the learning environment firsthand 
                             before applying.
+
+                            <p></p>
                         </p>
                     </div>
                 </div>
@@ -47,6 +167,7 @@ function Home() {
                             or achievements of our students, we ensure that our community is always in the loop. 
                             Be sure to check here regularly to stay informed and engaged with everything happening 
                             at our school.
+
                         </p>
                     </div>
                 </div>
@@ -64,12 +185,14 @@ function Home() {
                             and compassionate individual. The school's focus on nurturing both 
                             intellectual and emotional development has made a lasting impact. 
                             We are proud to be part of such a supportive and thriving community." – Emily, Parent of a 7th Grader
-                        </p>
-                         <RecentImages />
-                    </div>
+                             </p>
+                               </div>
             </section>
+                         
+                                  <section>  <RecentImages /> </section> 
+                      <br></br>
+                  
             </>
   );
-}
+} */}
 
-export default Home;
